@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bancos de Gametos - Reporte Trimestral</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="login-shell" id="loginShell">
+    <section class="login-card">
+      <div class="login-logo-box">
+        <img src="image/Logo_SDS.jpeg" alt="Logo Secretaría Distrital de Salud" class="login-logo" />
+      </div>
+      <p class="eyebrow">Bancos de gametos y embriones</p>
+      <h1>Ingreso autorizado</h1>
+      <form id="loginForm" class="login-form">
+        <label>
+          <span>Correo autorizado</span>
+          <input id="loginEmail" type="email" autocomplete="email" required />
+        </label>
+        <label>
+          <span>Contrasena</span>
+          <input id="loginPassword" type="password" autocomplete="current-password" required />
+        </label>
+        <button type="submit" class="ghost-button">Ingresar</button>
+        <p id="loginMessage" class="login-message">Ingresa con el correo y contrasena asignados en INVENTARIO.</p>
+      </form>
+    </section>
+  </main>
+
+  <main class="app-shell is-hidden" id="appShell">
+    <header class="app-header">
+      <div class="app-title-box">
+        <img src="image/Logo_SDS.jpeg" alt="Logo Secretaría Distrital de Salud" class="app-logo" />
+        <div>
+        <p class="eyebrow">Bancos de gametos y embriones</p>
+        <h1>Historico 2026</h1>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span id="userBadge" class="user-badge"></span>
+        <button type="button" id="btnLogout" class="ghost-button secondary">Salir</button>
+      </div>
+    </header>
+
+    <section class="status-strip">
+      <span id="backendBadge">Modo local</span>
+      <p id="statusMessage">Formulario listo para registrar informacion trimestral.</p>
+    </section>
+
+    <form id="reportForm" class="report-form">
+      <section class="form-section">
+        <h2>Datos del banco</h2>
+        <div class="grid">
+          <label>
+            <span>Nombre de la institucion o banco</span>
+            <input id="institution" name="institution" list="institutionList" readonly required />
+            <datalist id="institutionList"></datalist>
+          </label>
+          <label>
+            <span>NIT</span>
+            <input id="nit" name="nit" readonly />
+          </label>
+          <label>
+            <span>Responsable del reporte</span>
+            <input id="responsibleName" name="responsibleName" required />
+          </label>
+          <label>
+            <span>Cargo</span>
+            <input id="responsibleRole" name="responsibleRole" required />
+          </label>
+          <label>
+            <span>Correo institucional</span>
+            <input id="email" name="email" type="email" required />
+          </label>
+          <label>
+            <span>Telefono</span>
+            <input id="phone" name="phone" inputmode="numeric" autocomplete="tel" required />
+          </label>
+          <label>
+            <span>Año</span>
+            <input id="year" name="year" type="number" value="2026" min="2026" readonly required />
+          </label>
+          <label>
+            <span>Trimestre reporte</span>
+            <input id="quarter" name="quarter" readonly required />
+          </label>
+        </div>
+        <nav class="quarter-tabs" id="quarterTabs" aria-label="Seleccionar trimestre"></nav>
+      </section>
+
+      <section class="form-section" data-repeater="newDonors">
+        <div class="section-title">
+          <h2>1. Relacion de nuevos donantes</h2>
+          <button type="button" class="link-button" data-add-row="newDonors">Agregar donante</button>
+        </div>
+        <div class="repeater" id="newDonors"></div>
+      </section>
+
+      <section class="form-section" data-repeater="donorSuccesses">
+        <div class="section-title">
+          <h2>2. Relacion de exitos de cada donante</h2>
+          <button type="button" class="link-button" data-add-row="donorSuccesses">Agregar exito</button>
+        </div>
+        <div class="repeater" id="donorSuccesses"></div>
+      </section>
+
+      <section class="form-section" data-repeater="rejectedDonors">
+        <div class="section-title">
+          <h2>3. Donantes rechazados o descartados y causa</h2>
+          <button type="button" class="link-button" data-add-row="rejectedDonors">Agregar rechazo</button>
+        </div>
+        <div class="repeater" id="rejectedDonors"></div>
+      </section>
+
+      <section class="form-section">
+        <h2>4. Procedimientos de reproduccion asistida realizados</h2>
+        <div class="grid procedures-grid">
+          <label><span>FIV - Fecundacion in vitro</span><input id="fiv" name="fiv" type="number" min="0" value="0" /></label>
+          <label><span>ICSI - Inyeccion intracitoplasmatica de espermatozoides</span><input id="icsi" name="icsi" type="number" min="0" value="0" /></label>
+          <label><span>VITRIFICACION - Criopreservacion de ovulos y embriones</span><input id="vitrification" name="vitrification" type="number" min="0" value="0" /></label>
+          <label><span>TRANSFERENCIA DE EMBRIONES - Ovodonacion y donacion de semen</span><input id="embryoTransfer" name="embryoTransfer" type="number" min="0" value="0" /></label>
+          <label><span>IIU/IA - Inseminacion intrauterina</span><input id="iiuIa" name="iiuIa" type="number" min="0" value="0" /></label>
+          <label><span>Otros</span><input id="otherProcedures" name="otherProcedures" type="number" min="0" value="0" /></label>
+        </div>
+      </section>
+
+      <section class="form-actions">
+        <button type="submit" class="ghost-button" id="btnSaveReport">Guardar reporte</button>
+      </section>
+    </form>
+  </main>
+
+  <div class="modal-backdrop" id="entryModal" aria-hidden="true">
+    <section class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="entryModalTitle">
+      <h2 id="entryModalTitle">Agregar registro</h2>
+      <div class="modal-grid" id="entryModalFields"></div>
+      <div class="modal-actions">
+        <button type="button" class="ghost-button" id="btnModalAddAnother">Agregar otro</button>
+        <button type="button" class="ghost-button secondary" id="btnModalExit">Salir</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="saveModal" aria-hidden="true">
+    <section class="modal-dialog save-modal" role="dialog" aria-modal="true" aria-labelledby="saveModalTitle">
+      <div id="saveSpinner" class="save-spinner"></div>
+      <h2 id="saveModalTitle">Procesando</h2>
+      <p id="saveModalMessage">Estamos registrando la informacion.</p>
+      <div id="saveModalActions" class="modal-actions is-hidden">
+        <button type="button" class="ghost-button" id="btnSaveModalClose">Cerrar</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="confirmModal" aria-hidden="true">
+    <section class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="confirmModalTitle">
+      <h2 id="confirmModalTitle">Confirmar accion</h2>
+      <p id="confirmModalMessage">Deseas continuar?</p>
+      <div class="modal-actions">
+        <button type="button" class="ghost-button secondary" id="btnConfirmCancel">Cancelar</button>
+        <button type="button" class="danger-button" id="btnConfirmAccept">Eliminar</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="script.js"></script>
+</body>
+</html>

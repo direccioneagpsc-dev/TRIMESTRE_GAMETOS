@@ -1,0 +1,531 @@
+:root {
+  --ink: #17202a;
+  --muted: #607080;
+  --line: #d7dde3;
+  --panel: #ffffff;
+  --band: #eef5f2;
+  --accent: #126b5f;
+  --accent-dark: #0b4b43;
+  --danger: #a23b3b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f7f8;
+  color: var(--ink);
+}
+
+.app-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0 40px;
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+.login-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.login-card {
+  width: min(430px, 100%);
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  text-align: center;
+}
+
+.login-logo-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.login-logo {
+  display: block;
+  margin: 0 auto;
+  width: 300px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.login-form {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.login-message {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.login-card .eyebrow,
+.login-card h1,
+.login-card .login-message {
+  text-align: center;
+}
+
+.login-form label {
+  text-align: left;
+}
+
+.app-header,
+.status-strip,
+.form-section,
+.records-section {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  padding: 22px;
+}
+
+.app-title-box {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.app-logo {
+  width: 250px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.user-badge {
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: var(--band);
+  color: var(--accent-dark);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+.status-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 14px 0;
+  padding: 12px 16px;
+}
+
+.status-strip span {
+  flex: 0 0 auto;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--band);
+  color: var(--accent-dark);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.status-strip p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.quarter-tabs {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.quarter-tab {
+  min-height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  padding: 6px 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.quarter-tab.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.quarter-tab:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.report-form {
+  display: grid;
+  gap: 14px;
+}
+
+.form-section,
+.records-section {
+  padding: 18px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+label {
+  display: grid;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.field-error {
+  display: none;
+  color: var(--danger);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.field-error.is-visible {
+  display: block;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 9px 10px;
+  font: inherit;
+  background: #fff;
+}
+
+input[readonly] {
+  background: var(--band);
+  color: var(--accent-dark);
+  font-weight: 700;
+  cursor: not-allowed;
+}
+
+textarea {
+  min-height: 76px;
+  resize: vertical;
+}
+
+.section-title,
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.repeater {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.split-group {
+  display: grid;
+  gap: 10px;
+}
+
+.split-title {
+  margin: 6px 0 0;
+  font-size: 14px;
+}
+
+.registered-tools {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) auto;
+  gap: 12px;
+  align-items: end;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.registered-search {
+  margin: 0;
+}
+
+.registered-pagination {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.registered-pagination span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.registered-pagination button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.repeater-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 180px;
+  gap: 10px;
+  align-items: end;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfcfc;
+}
+
+.donorSuccesses-row,
+.rejectedDonors-row {
+  grid-template-columns: 1fr 2fr 180px;
+}
+
+.existing-record {
+  background: var(--band);
+}
+
+.existing-record.is-editing {
+  background: #fff !important;
+  border-color: var(--accent);
+}
+
+.registered-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  width: 180px;
+}
+
+.remove-row {
+  width: 180px;
+}
+
+.registered-actions .link-button,
+.registered-actions .danger-button,
+.registered-actions .ghost-button {
+  min-width: 68px;
+}
+
+.ghost-button,
+.link-button {
+  min-height: 40px;
+  border: 0;
+  border-radius: 6px;
+  padding: 9px 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ghost-button {
+  background: var(--accent);
+  color: #fff;
+}
+
+.ghost-button.secondary,
+.link-button {
+  background: #e9eeef;
+  color: var(--ink);
+}
+
+.remove-row {
+  background: #f5e8e8;
+  color: var(--danger);
+}
+
+.danger-button {
+  min-height: 34px;
+  border: 0;
+  border-radius: 6px;
+  padding: 7px 10px;
+  background: #f5e8e8;
+  color: var(--danger);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(16, 24, 32, 0.46);
+  z-index: 20;
+}
+
+.modal-backdrop.is-open {
+  display: flex;
+}
+
+.modal-dialog {
+  width: min(560px, 100%);
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 20px 50px rgba(10, 24, 36, 0.22);
+}
+
+.save-modal {
+  text-align: center;
+}
+
+.save-modal p {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.save-spinner {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 10px;
+  border: 4px solid #d7e3e1;
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.modal-grid {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.repeater-empty {
+  padding: 14px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.records-section {
+  margin-top: 14px;
+}
+
+.table-scroll {
+  overflow: auto;
+  margin-top: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--line);
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: var(--band);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.empty-state {
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .app-header,
+  .header-actions,
+  .status-strip,
+  .section-title,
+  .form-actions,
+  .modal-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .grid,
+  .repeater-row,
+  .donorSuccesses-row,
+  .rejectedDonors-row {
+    grid-template-columns: 1fr;
+  }
+}
