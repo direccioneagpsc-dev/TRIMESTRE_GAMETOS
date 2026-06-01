@@ -1,6 +1,6 @@
 const CONFIG = {
   mode: "quarterly",
-  appsScriptUrl: "https://script.google.com/macros/s/AKfycbyrGo8TFwwfvgU-QCCwdfZnlOQ4Ywl8HskV-RYyMA3QKBxWZh2EJmP0EYVijvuJ_ln9/exec",
+  appsScriptUrl: "https://script.google.com/macros/s/AKfycbxFiscBDMxA6GwgQnePzKXtvEJ4BLd6kyc895WhM81IhrOqexmq39p3_xMAJrVTaKfy/exec",
   storageKey: "banco-gametos-trimestral-2026-v1",
   sessionKey: "banco-gametos-trimestral-session-v1",
   pageSize: 10,
