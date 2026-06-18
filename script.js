@@ -43,11 +43,11 @@ const repeaterDefinitions = {
       label: "Causa de rechazo o descarte",
       type: "select",
       options: [
-        "MEDICA Y CALIDAD DE GAMETOS",
-        "GENETICA",
-        "INFECCIOSAS",
-        "PSICOLOGICO",
-        "LEGAL - ADMINISTRATIVA"
+        "1. MEDICA Y CALIDAD DE GAMETOS",
+        "2. GENETICA",
+        "3. INFECCIOSAS",
+        "4. PSICOLOGICO",
+        "5. LEGAL - ADMINISTRATIVA"
       ]
     }
   ]
