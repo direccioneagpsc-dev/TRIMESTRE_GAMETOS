@@ -30,7 +30,7 @@ const CONFIG = {
 const repeaterDefinitions = {
   newDonors: [
     { name: "donorCode", label: "Codigo del donante", type: "text" },
-    { name: "freezeDate", label: "Fecha de congelacion", type: "date" }
+    { name: "freezeDate", label: "Fecha de congelacion / Donacion", type: "date" }
   ],
   donorSuccesses: [
     { name: "donorCode", label: "Codigo del donante", type: "text" },
