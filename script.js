@@ -455,7 +455,7 @@ function addRepeaterRow(key, values = {}) {
   const row = document.createElement("div");
   row.className = `repeater-row draft-record ${key}-row`;
   row.innerHTML = repeaterDefinitions[key].map(field => {
-    const value = values[field.name] || "";
+    const value = resolveFieldStoredValue(field, values[field.name] || "");
     if (field.type === "textarea") {
       return `<label><span>${field.label}</span><textarea data-field="${field.name}">${escapeHtml(value)}</textarea></label>`;
     }
@@ -868,7 +868,7 @@ function addRegisteredRepeaterRow(key, values) {
   row.dataset.reportId = values.reportId || "";
   row.dataset.itemIndex = String(values.itemIndex ?? "");
   row.innerHTML = repeaterDefinitions[key].map(field => {
-    const value = values[field.name] || "";
+    const value = resolveFieldStoredValue(field, values[field.name] || "");
     if (field.type === "select") {
       const options = [
         '<option value="">Seleccionar</option>',
@@ -1101,7 +1101,8 @@ function disableExistingEdit(row) {
 function restoreExistingRow(row) {
   const values = JSON.parse(row.dataset.originalValues || "{}");
   row.querySelectorAll("[data-field]").forEach(input => {
-    input.value = values[input.dataset.field] || "";
+    const definition = getFieldDefinition(row.dataset.section, input.dataset.field);
+    input.value = resolveFieldStoredValue(definition, values[input.dataset.field] || "");
   });
   disableExistingEdit(row);
 }
@@ -1395,6 +1396,38 @@ function normalizeText(value) {
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "");
+}
+
+function getFieldDefinition(sectionKey, fieldName) {
+  return (repeaterDefinitions[sectionKey] || []).find(field => field.name === fieldName) || null;
+}
+
+function normalizeSelectMatch(value) {
+  return normalizeText(value)
+    .replace(/^\d+\s*[.\-]?\s*/, "")
+    .replace(/[^\w\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function resolveFieldStoredValue(field, rawValue) {
+  const value = String(rawValue || "").trim();
+  if (!field || field.type !== "select" || !value) {
+    return value;
+  }
+  if (field.options.includes(value)) {
+    return value;
+  }
+
+  const normalizedValue = normalizeSelectMatch(value);
+  const matchedOption = field.options.find(option => {
+    const normalizedOption = normalizeSelectMatch(option);
+    return normalizedOption === normalizedValue
+      || normalizedOption.includes(normalizedValue)
+      || normalizedValue.includes(normalizedOption);
+  });
+
+  return matchedOption || value;
 }
 
 async function validateRequiredBeforeSave() {
